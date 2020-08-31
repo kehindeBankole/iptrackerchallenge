@@ -11,8 +11,8 @@ function SuperHeroState(props) {
     data: [],
   };
   const [state, dispatch] = useReducer(userReducer, initialState);
-  const fetch = () => {
-      Axios.get(`https://geo.ipify.org/api/v1?apiKey=at_hJc92kpoSb6zyC90qOZ3NTbCiOYMI&email=bankolek1@gmail.com`)
+  const fetch = (email) => {
+      Axios.get(`https://geo.ipify.org/api/v1?apiKey=at_${process.env.REACT_APP_KEY}`)
       .then((res)=>dispatch({type:"success" , payload:res.data}))
       .catch((err)=>{dispatch({type:"fail" , payload:"network error"})})
   };
