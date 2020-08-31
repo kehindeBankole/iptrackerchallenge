@@ -7,6 +7,7 @@ function UserList() {
   useEffect(() => {
     context.fetch(`bankolek5@gmail.com`);
   }, []);
+  if(context.load)return"loading"
     return (
         <div>
           <User ip={context.data.ip}

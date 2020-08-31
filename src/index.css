@@ -18,3 +18,4 @@ code {
 .col:not(#last){
   border-right:1px solid black;
 }
+#mapid { height: 180px; }
