@@ -20,5 +20,14 @@ export const userReducer = (state, action) => {
         err: action.payload,
         load: false,
       };
+      case 'searchsuccess':return{
+        ...state,
+        data:action.payload,
+        datasearch : action.payload,
+        loadsearch:false
+      }
+      default : return state
   }
+
 };
+

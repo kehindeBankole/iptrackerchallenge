@@ -1,9 +1,10 @@
 import React from 'react'
+import { CountryList } from '../component/CountryList'
 
 function Home() {
     return (
-        <div className="bg-primary py-5">
-          
+        <div className="">
+          <CountryList/>
         </div>
     )
 }

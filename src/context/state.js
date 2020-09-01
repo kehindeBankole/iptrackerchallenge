@@ -9,22 +9,34 @@ function SuperHeroState(props) {
     load: true,
     err: "",
     data: [],
+    loadsearch:true,
+    errsearch:"",
+    datasearch:[]
   };
   const [state, dispatch] = useReducer(userReducer, initialState);
   const fetch = (email) => {
-      Axios.get(`https://geo.ipify.org/api/v1?apiKey=at_${process.env.REACT_APP_KEY}`)
+      Axios.get(`https://restcountries.eu/rest/v2/all`)
       .then((res)=>dispatch({type:"success" , payload:res.data}))
       .catch((err)=>{dispatch({type:"fail" , payload:"network error"})})
   };
+  const search=(countryname)=>{
+    Axios.get(`https://restcountries.eu/rest/v2/name/${countryname}`)
+    .then((res)=>dispatch({type:"searchsuccess" , payload:res.data}))
+    .catch((err)=>{dispatch({type:"errfail" , payload:"network error"})})
+  }
   return (
     <SuperContext.Provider
       value={{
         load: state.load,
         data: state.data,
+        loadsearch: state.loadsearch,
+        datasearch: state.datasearch,
         err: state.err,
-        fetch
+        fetch,
+        search
       }}
     >
+      
      {props.children}
     </SuperContext.Provider>
   );
