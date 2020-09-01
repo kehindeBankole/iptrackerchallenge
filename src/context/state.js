@@ -20,7 +20,7 @@ function SuperHeroState(props) {
       .catch((err)=>{dispatch({type:"fail" , payload:"network error"})})
   };
   const search=(countryname)=>{
-    Axios.get(`https://restcountries.eu/rest/v2/name/${countryname}`)
+    Axios.get(`https://restcountries.eu/rest/v2/name/${countryname}?fullText=true`)
     .then((res)=>dispatch({type:"searchsuccess" , payload:res.data}))
     .catch((err)=>{dispatch({type:"errfail" , payload:"network error"})})
   }

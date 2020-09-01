@@ -22,7 +22,6 @@ export const userReducer = (state, action) => {
       };
       case 'searchsuccess':return{
         ...state,
-        data:action.payload,
         datasearch : action.payload,
         loadsearch:false
       }

@@ -6,8 +6,11 @@ export const CountryList = () => {
   const [cname, setcname] = useState("");
   const context = useContext(SuperContext);
   const { loading, data, err } = context;
+const onchange=(event)=>{
+  setcname(event.target.value)
+}
 
-  function search() {
+function search() {
     context.search(cname);
   }
   useEffect(() => {
@@ -23,6 +26,7 @@ export const CountryList = () => {
   } else if (data) {
     return (
       <div className="container mt-5">
+        <button onClick={()=>console.log(cname)}>click</button>
         <form className="form-inline">
           <input
             className="form-control mr-sm-2"
@@ -30,7 +34,7 @@ export const CountryList = () => {
             placeholder="Search"
             aria-label="Search"
             onKeyPress={search}
-            onChange={(e) => setcname(e.target.value)}
+            onChange={onchange}
             value={cname}
             name="name"
           />
