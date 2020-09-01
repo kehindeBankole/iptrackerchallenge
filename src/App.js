@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 function App() {
   return (
     <SuperHeroState>
-      <Home />
+     <Home />
     </SuperHeroState >
   );
 }

@@ -12,8 +12,9 @@ code {
   -moz-box-shadow: 10px 10px 63px -28px rgba(0,0,0,0.75);
   box-shadow: 10px 10px 63px -28px rgba(0,0,0,0.75);;
   box-sizing: border-box;
-  border-radius:25px;
-  margin-top:20px;
+  border-radius:5px;
+  background:white;
+
 }
 .col:not(#last){
   border-right:1px solid black;
