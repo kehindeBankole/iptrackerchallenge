@@ -18,12 +18,16 @@ export const CountryList = () => {
     setcname(event.target.value);
   };
 
-  function search() {
-    context.search();
-  }
+  // function search() {
+  //   context.search();
+  // }
   useEffect(() => {
     context.fetch();
   }, []);
+
+  const filtered = data.filter((country) => {
+    return country.name.toLowerCase().includes(cname.toLowerCase());
+  });
   const style = { textDecoration: "none", color: "black" };
   if (loading) {
     return "loading";
@@ -36,7 +40,7 @@ export const CountryList = () => {
             type="search"
             placeholder="Search"
             aria-label="Search"
-            onKeyUp={() => search()}
+            // onKeyUp={() => search()}
             onChange={onchange}
             value={cname}
             name="name"
@@ -56,7 +60,7 @@ export const CountryList = () => {
           </div>
         </form>
         <div className="row mt-5" id="parent">
-          {data.map((country, i) => {
+          {filtered.map((country, i) => {
             return (
               <div
                 className="col-lg-3 col-12 col-md-6 mb-3"
