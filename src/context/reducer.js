@@ -20,10 +20,10 @@ export const userReducer = (state, action) => {
         err: action.payload,
         load: false,
       };
-      case 'searchsuccess':return{
+      case 'search':return{
         ...state,
-        datasearch : action.payload,
-        loadsearch:false
+        // datasearch : action.payload,
+        // loadsearch:false
       }
       default : return state
   }

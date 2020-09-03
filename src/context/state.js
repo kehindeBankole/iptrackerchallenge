@@ -9,28 +9,39 @@ function SuperHeroState(props) {
     load: true,
     err: "",
     data: [],
-    loadsearch:true,
-    errsearch:"",
-    datasearch:[]
   };
   const [state, dispatch] = useReducer(userReducer, initialState);
-  const fetch = (email) => {
+  const fetch = () => {
       Axios.get(`https://restcountries.eu/rest/v2/all`)
       .then((res)=>dispatch({type:"success" , payload:res.data}))
       .catch((err)=>{dispatch({type:"fail" , payload:"network error"})})
   };
-  const search=(countryname)=>{
-    Axios.get(`https://restcountries.eu/rest/v2/name/${countryname}?fullText=true`)
-    .then((res)=>dispatch({type:"searchsuccess" , payload:res.data}))
-    .catch((err)=>{dispatch({type:"errfail" , payload:"network error"})})
+  const search=()=>{
+      // Declare variables
+      let input, filtered, outer, inner, a, i, txtValue;
+      input = document.getElementById('myInput');
+      filtered = input.value.toUpperCase();
+      outer = document.getElementById("parent");
+      inner = outer.querySelectorAll('#childcon');
+    
+      // Loop through all list items, and hide those who don't match the search query
+      for (i = 0; i < inner.length; i++) {
+        a = inner[i].getElementsByTagName("p")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filtered) > -1) {
+          inner[i].style.display = "";
+        } else {
+          inner[i].style.display = "none";
+        }
+      }
+ 
+    dispatch({type:"search"})
   }
   return (
     <SuperContext.Provider
       value={{
         load: state.load,
         data: state.data,
-        loadsearch: state.loadsearch,
-        datasearch: state.datasearch,
         err: state.err,
         fetch,
         search
