@@ -5,6 +5,7 @@ import { Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 export const CountryList = () => {
   const [cname, setcname] = useState("");
+  const [filtered, setfiltered] = useState([]);
   const [region] = useState([
     "Africa",
     "Americas",
@@ -17,17 +18,16 @@ export const CountryList = () => {
   const onchange = (event) => {
     setcname(event.target.value);
   };
-
-  // function search() {
-  //   context.search();
-  // }
   useEffect(() => {
     context.fetch();
   }, []);
-
-  const filtered = data.filter((country) => {
-    return country.name.toLowerCase().includes(cname.toLowerCase());
-  });
+  useEffect(() => {
+    setfiltered(
+      data.filter((country, x) => {
+        return country.name.toLowerCase().includes(cname.toLowerCase());
+      })
+    );
+  }, [cname, data]);
   const style = { textDecoration: "none", color: "black" };
   if (loading) {
     return "loading";
@@ -40,7 +40,6 @@ export const CountryList = () => {
             type="search"
             placeholder="Search"
             aria-label="Search"
-            // onKeyUp={() => search()}
             onChange={onchange}
             value={cname}
             name="name"
@@ -67,17 +66,15 @@ export const CountryList = () => {
                 key={i}
                 id="childcon"
               >
-                <p>
-                  <Link to={`/country/${country.name}`} style={style}>
-                    <CountryCard
-                      src={country.flag}
-                      name={country.name}
-                      population={country.population.toLocaleString()}
-                      region={country.region}
-                      capital={country.capital}
-                    />
-                  </Link>
-                </p>
+                <Link to={`/country/${country.name}`} style={style}>
+                  <CountryCard
+                    src={country.flag}
+                    name={country.name}
+                    population={country.population.toLocaleString()}
+                    region={country.region}
+                    capital={country.capital}
+                  />
+                </Link>
               </div>
             );
           })}
