@@ -5,6 +5,13 @@ import { Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 export const CountryList = () => {
   const [cname, setcname] = useState("");
+  const [region] = useState([
+    "Africa",
+    "Americas",
+    "Asia",
+    "Europe",
+    "Oceania",
+  ]);
   const context = useContext(SuperContext);
   const { loading, data, err } = context;
   const onchange = (event) => {
@@ -40,11 +47,10 @@ export const CountryList = () => {
               <Dropdown.Toggle variant="success" id="dropdown-basic">
                 Dropdown Button
               </Dropdown.Toggle>
-
               <Dropdown.Menu>
-                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                {region.map((d) => (
+                  <Dropdown.Item>{d}</Dropdown.Item>
+                ))}
               </Dropdown.Menu>
             </Dropdown>
           </div>
