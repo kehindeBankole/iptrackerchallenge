@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { SuperContext } from "../context/context";
 import CountryCard from "./CountryCard";
+import { Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 export const CountryList = () => {
   const [cname, setcname] = useState("");
@@ -34,11 +35,28 @@ export const CountryList = () => {
             name="name"
             id="myInput"
           />
+          <div style={{ float: "left" }}>
+            <Dropdown>
+              <Dropdown.Toggle variant="success" id="dropdown-basic">
+                Dropdown Button
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </div>
         </form>
         <div className="row mt-5" id="parent">
           {data.map((country, i) => {
             return (
-              <div className="col-lg-3 col-6 mb-3" key={i} id="childcon">
+              <div
+                className="col-lg-3 col-12 col-md-6 mb-3"
+                key={i}
+                id="childcon"
+              >
                 <p>
                   <Link to={`/country/${country.name}`} style={style}>
                     <CountryCard
