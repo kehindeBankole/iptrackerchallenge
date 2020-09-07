@@ -12,6 +12,7 @@ export const CountryList = () => {
     "Europe",
     "Oceania",
   ]);
+  const [name, setname] = useState("");
   const context = useContext(SuperContext);
   const { load, data, err, filter } = context;
   const onchange = (event) => {
@@ -27,6 +28,7 @@ export const CountryList = () => {
   }, [cname, data]);
 
   function hand(d) {
+    setname(d);
     context.getregion(d);
   }
 
@@ -48,7 +50,7 @@ export const CountryList = () => {
         <div style={{ float: "left" }}>
           <Dropdown>
             <Dropdown.Toggle variant="success" id="dropdown-basic">
-              Dropdown Button
+              {name ? name : "choose region"}
             </Dropdown.Toggle>
             <Dropdown.Menu>
               {region.map((d, i) => (
