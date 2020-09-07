@@ -22,8 +22,10 @@ export const userReducer = (state, action) => {
       };
       case 'search':return{
         ...state,
-        // datasearch : action.payload,
-        // loadsearch:false
+        filter :  state.data.filter((country, x) => {
+          return country.name.toLowerCase().includes(action.payload.toLowerCase());
+        }),
+       
       }
       default : return state
   }

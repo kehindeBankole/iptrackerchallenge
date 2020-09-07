@@ -9,6 +9,7 @@ function SuperHeroState(props) {
     load: true,
     err: "",
     data: [],
+    filter:[]
   };
   const [state, dispatch] = useReducer(userReducer, initialState);
   const fetch = () => {
@@ -16,7 +17,9 @@ function SuperHeroState(props) {
       .then((res)=>dispatch({type:"success" , payload:res.data}))
       .catch((err)=>{dispatch({type:"fail" , payload:"network error"})})
   };
- 
+ const search=(cont)=>{
+   dispatch({type : "search" , payload : cont})
+ }
     
  
   return (
@@ -26,6 +29,8 @@ function SuperHeroState(props) {
         data: state.data,
         err: state.err,
         fetch,
+        filter:state.filter,
+        search
       
       }}
     >

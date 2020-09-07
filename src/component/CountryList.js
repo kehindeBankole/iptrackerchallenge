@@ -5,7 +5,6 @@ import { Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 export const CountryList = () => {
   const [cname, setcname] = useState("");
-  const [filtered, setfiltered] = useState([]);
   const [region] = useState([
     "Africa",
     "Americas",
@@ -14,7 +13,7 @@ export const CountryList = () => {
     "Oceania",
   ]);
   const context = useContext(SuperContext);
-  const { load, data, err } = context;
+  const { load, data, err , filter} = context;
   const onchange = (event) => {
     setcname(event.target.value);
   };
@@ -22,11 +21,7 @@ export const CountryList = () => {
     context.fetch();
   }, []);
   useEffect(() => {
-    setfiltered(
-      data.filter((country, x) => {
-        return country.name.toLowerCase().includes(cname.toLowerCase());
-      })
-    );
+context.search(cname)
   }, [cname, data]);
   const style = { textDecoration: "none", color: "black" };
   if(load)return "loading"
@@ -57,7 +52,7 @@ export const CountryList = () => {
           </div>
         </form>
         <div className="row mt-5" id="parent">
-          {filtered.map((country, i) => {
+          {filter.map((country, i) => {
             return (
               <div
                 className="col-lg-3 col-12 col-md-6 mb-3"
