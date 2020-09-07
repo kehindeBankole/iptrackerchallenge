@@ -48,9 +48,9 @@ export const CountryList = () => {
           name="name"
           id="myInput"
         />
-        <div style={{ float: "left" }}>
+        <div style={{ float: "left" }} className="ml-auto">
           <Dropdown>
-            <Dropdown.Toggle variant="success" id="dropdown-basic">
+            <Dropdown.Toggle variant="danger" id="dropdown-basic">
               {name ? name : "choose region"}
             </Dropdown.Toggle>
             <Dropdown.Menu>
@@ -64,7 +64,7 @@ export const CountryList = () => {
         </div>
       </form>
       <div className="row mt-5" id="parent">
-        {filter.map((country, i) => {
+        {filter.sort().map((country, i) => {
           return (
             <div
               className="col-lg-3 col-12 col-md-6 mb-3"
