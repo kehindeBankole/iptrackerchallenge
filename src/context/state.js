@@ -9,23 +9,24 @@ function SuperHeroState(props) {
     load: true,
     err: "",
     data: [],
-    filter:[],
-    byregion:[]
+    filter: [],
+    byregion: [],
   };
   const [state, dispatch] = useReducer(userReducer, initialState);
   const fetch = () => {
     Axios.get(`https://restcountries.eu/rest/v2/all`)
-      .then((res)=>dispatch({type:"success" , payload:res.data}))
-      .catch((err)=>{dispatch({type:"fail" , payload:"network error"})})
+      .then((res) => dispatch({ type: "success", payload: res.data }))
+      .catch((err) => {
+        dispatch({ type: "fail", payload: "network error" });
+      });
   };
- const search=(cont , region)=>{
-   dispatch({type : "search" , payload1 : cont , payload2:region})
- }
-    const getregion=(reg)=>{
-      dispatch({type:"byreg" , payload2:reg})
-      // .catch((err)=>{dispatch({type:"fail" , payload:"network error"})})
-    }
- 
+  const search = (cont, region) => {
+    dispatch({ type: "search", payload1: cont, payload2: region });
+  };
+  const getregion = (reg) => {
+    dispatch({ type: "byreg", payload2: reg });
+  };
+
   return (
     <SuperContext.Provider
       value={{
@@ -33,15 +34,13 @@ function SuperHeroState(props) {
         data: state.data,
         err: state.err,
         fetch,
-        filter:state.filter,
+        filter: state.filter,
         search,
-        byregion:state.byregion,
-        getregion
-      
+        byregion: state.byregion,
+        getregion,
       }}
     >
-      
-     {props.children}
+      {props.children}
     </SuperContext.Provider>
   );
 }

@@ -3,6 +3,7 @@ import { SuperContext } from "../context/context";
 import CountryCard from "./CountryCard";
 import { Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Loading from "./Loading";
 export const CountryList = () => {
   const [cname, setcname] = useState("");
   const [region, setregion] = useState([
@@ -33,7 +34,7 @@ export const CountryList = () => {
   }
 
   const style = { textDecoration: "none", color: "black" };
-  if (load) return "loading";
+  if (load) return <Loading/>;
   return (
     <div className="container mt-5">
       <form className="form-inline">
