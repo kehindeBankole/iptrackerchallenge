@@ -14,7 +14,7 @@ export const CountryList = () => {
     "Oceania",
   ]);
   const context = useContext(SuperContext);
-  const { loading, data, err } = context;
+  const { load, data, err } = context;
   const onchange = (event) => {
     setcname(event.target.value);
   };
@@ -29,9 +29,7 @@ export const CountryList = () => {
     );
   }, [cname, data]);
   const style = { textDecoration: "none", color: "black" };
-  if (loading) {
-    return "loading";
-  } else if (data) {
+  if(load)return "loading"
     return (
       <div className="container mt-5">
         <form className="form-inline">
@@ -81,5 +79,4 @@ export const CountryList = () => {
         </div>
       </div>
     );
-  }
 };
