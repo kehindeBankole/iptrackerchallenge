@@ -3,9 +3,12 @@ import { SuperContext } from "../context/context";
 import CountryCard from "./CountryCard";
 import { Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Pagination from './Pagination'
 import Loading from "./Loading";
 export const CountryList = () => {
   const [cname, setcname] = useState("");
+  const [cpage , setcpage] = useState(1)
+  const [pppage , setpppage] = useState(12)
   const [region, setregion] = useState([
     "Africa",
     "Americas",
@@ -26,14 +29,20 @@ export const CountryList = () => {
   useEffect(() => {
     context.search(cname);
     // eslint-disable-next-line
-  }, [cname, data]);
+  }, [cname, data , cpage]);
 
   function hand(d) {
     setname(d);
     context.getregion(d);
   }
-
+  function paginate(number){
+    setcpage(number)
+  }
+const indexlastpost = cpage * pppage
+const indexfirstpost = indexlastpost - pppage
+const filtered=filter.slice(indexfirstpost , indexlastpost)
   const style = { textDecoration: "none", color: "black" };
+
   if (load) return <Loading/>;
   return (
     <div className="container mt-5">
@@ -64,7 +73,7 @@ export const CountryList = () => {
         </div>
       </form>
       <div className="row mt-5" id="parent">
-        {filter.sort().map((country, i) => {
+        {filtered.sort().map((country, i) => {
           return (
             <div
               className="col-lg-3 col-12 col-md-6 mb-3"
@@ -84,6 +93,7 @@ export const CountryList = () => {
           );
         })}
       </div>
+      <Pagination postperpage={pppage} totpost={filter.length} paginate={paginate}/>
     </div>
   );
 };
