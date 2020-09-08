@@ -1,5 +1,5 @@
 import React from "react";
-
+import {Link , NavLink} from 'react-router-dom'
 function Pagination({ postperpage, totpost , paginate }) {
   const pageno = [];
   for (let x = 1; x < Math.ceil(totpost / postperpage); x++) {
@@ -9,12 +9,12 @@ function Pagination({ postperpage, totpost , paginate }) {
     <div>
       <nav>
         <ul className="pagination">
-          {pageno.map((no) => {
+          {pageno.map((no , i) => {
             return (
-              <li className="page-item">
-                <a onClick={()=>paginate(no)} className="page-link">
+              <li className="page-item"  key={i}>
+                <NavLink to=""onClick={()=>paginate(no)} className="page-link">
                   {no}
-                </a>
+                </NavLink>
               </li>
             );
           })}

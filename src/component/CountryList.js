@@ -29,7 +29,7 @@ export const CountryList = () => {
   useEffect(() => {
     context.search(cname);
     // eslint-disable-next-line
-  }, [cname, data , cpage]);
+  }, [cname, data]);
 
   function hand(d) {
     setname(d);
