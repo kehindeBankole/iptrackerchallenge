@@ -1,15 +1,10 @@
-import React , {useContext} from "react";
+import React , {useContext , useEffect} from "react";
 import { Link } from "react-router-dom";
 import logo from "./globe.jpg";
 import {SuperContext} from '../context/context'
 
 export const Nav = () => {
   const context = useContext(SuperContext)
-  function change(){
-    context.godark()
-    console.log(context.darkclick)
-  }
-
   return (
     <div>
       <nav className="navbar navbar-dark bg-dark">
@@ -20,7 +15,7 @@ export const Nav = () => {
           <label className="switch">
             <input
               type="checkbox"
-              onChange={change}
+              onChange={()=>context.godark()}
             />
             <span className="slider round"></span>
           </label>
