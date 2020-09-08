@@ -7,9 +7,9 @@ export const Nav = () => {
   const context = useContext(SuperContext)
   return (
     <div>
-      <nav className="navbar navbar-dark bg-dark">
+      <nav className="navbar navbar-dark bg-dark py-3">
         <Link className="navbar-brand ml-3" to="/">
-          <img src={logo} alt="logo" width="80" height="80" />
+          <img src={logo} alt="logo" width="50" height="50" />
         </Link>
         <form className="form-inline">
           <label className="switch">
