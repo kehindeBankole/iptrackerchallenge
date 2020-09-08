@@ -11,6 +11,7 @@ function SuperHeroState(props) {
     data: [],
     filter: [],
     byregion: [],
+    darkclick : true
   };
   const [state, dispatch] = useReducer(userReducer, initialState);
   const fetch = () => {
@@ -26,7 +27,9 @@ function SuperHeroState(props) {
   const getregion = (reg) => {
     dispatch({ type: "byreg", payload2: reg });
   };
-
+const godark=()=>{
+  dispatch({ type: "dark"});
+}
   return (
     <SuperContext.Provider
       value={{
@@ -38,6 +41,8 @@ function SuperHeroState(props) {
         search,
         byregion: state.byregion,
         getregion,
+        darkclick:state.darkclick,
+        godark
       }}
     >
       {props.children}

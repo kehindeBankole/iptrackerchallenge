@@ -45,8 +45,8 @@ const filtered=filter.slice(indexfirstpost , indexlastpost)
 
   if (load) return <Loading/>;
   return (
-    <div className="container mt-5">
-      <form className="form-inline">
+    <div className="container">
+      <form className="form-inline py-5">
         <input
           className="form-control mr-sm-2"
           type="search"

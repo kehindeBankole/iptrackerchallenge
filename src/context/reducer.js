@@ -38,6 +38,10 @@ export const userReducer = (state, action) => {
         })
    
       };
+      case "dark" : return{
+        ...state,
+        darkclick : !state.darkclick
+      }
     default:
       return state;
   }
