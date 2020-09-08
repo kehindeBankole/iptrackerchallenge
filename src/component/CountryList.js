@@ -73,7 +73,7 @@ const filtered=filter.slice(indexfirstpost , indexlastpost)
         </div>
       </form>
       <div className="row mt-5" id="parent">
-        {filtered.sort().map((country, i) => {
+        {filter.sort().map((country, i) => {
           return (
             <div
               className="col-lg-3 col-12 col-md-6 mb-3"
@@ -93,7 +93,7 @@ const filtered=filter.slice(indexfirstpost , indexlastpost)
           );
         })}
       </div>
-      <Pagination postperpage={pppage} totpost={filter.length} paginate={paginate}/>
+      {/* <Pagination postperpage={pppage} totpost={filter.length} paginate={paginate}/> */}
     </div>
   );
 };

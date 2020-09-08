@@ -7,7 +7,6 @@ import CountryView from "./pages/CountryView";
 function App() {
   return (
     <SuperHeroState>
-      
       <Router>
       <Nav />
        <Switch>
